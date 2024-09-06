@@ -158,4 +158,13 @@ if uploaded_file1 and uploaded_file2:
             x1, y1, x2, y2, conf, cls = row[['xmin', 'ymin', 'xmax', 'ymax', 'confidence', 'class']]
             label = f"{results2.names[int(cls)]} {conf:.2f}"
             cv2.rectangle(image_cv2, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 2)
-            cv2.putText(image_cv2, label, (int(x1), int(y1) -
+            cv2.putText(image_cv2, label, (int(x1), int(y1) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+            cropped_object = image_cv2[int(y1):int(y2), int(x1):int(x2)]
+            if (x1, y1, x2, y2) == child_bbox2:
+                all_objects2.append(cropped_object)
+            else:
+                all_objects2.append(cropped_object)
+        cropped_objects_dict_out["child"] = all_objects2
+
+    result = compare_images(cropped_objects_dict_in, cropped_objects_dict_out)
+    st.write(result)
