@@ -1,6 +1,5 @@
 torch
-opencv-python-headless
-Pillow
+opencv-python
+pillow
 numpy
 scikit-image
-streamlit
